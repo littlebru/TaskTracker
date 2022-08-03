@@ -1,23 +1,9 @@
-<template>      
-    <div class="column">
-        <div class="is-flex is-align-items-center is-justify-content-space-between">
-
-            <Cronometro :tempo = "tempo"/>
-
-            <button class="button" @click="iniciar" :disabled="cronometroRodando">
-                <span class="icon">
-                    <i class="fas fa-play"></i>
-                </span>
-                <span>play</span>
-            </button>
-            <button class="button" @click="finalizar" :disabled="!cronometroRodando">
-                <span class="icon">
-                    <i class="fas fa-stop"></i>
-                </span>
-                <span>stop</span>
-            </button>
-        </div>
-    </div>
+<template>
+  <section class="is-flex is-align-items-center is-justify-content-space-between">
+    <Cronometro :tempo="tempo"/>
+    <Botao @clicado="iniciar" icone="fas fa-play" texto="play" :desabilitado="cronometroRodando" />
+    <Botao @clicado="finalizar" icone="fas fa-stop" texto="stop" :desabilitado="!cronometroRodando" />
+  </section>
 </template>
 
 
@@ -26,11 +12,15 @@
 
     import{ defineComponent} from 'vue'
     import Cronometro from './Cronometro.vue'
+    import Botao from './Botao.vue'
+
 /* eslint-disable */
     export default defineComponent({
         name: 'Temporizador',
+        emits:['aoTemporizadorFinalizado'],
         components:{
-            Cronometro
+            Cronometro,
+            Botao
         },
         data () {
             return {
@@ -53,6 +43,12 @@
                 this.cronometroRodando = false
                 // pausar contagem do timer
                 clearInterval(this.cronometro)
+
+                // $emit(nome do evento que emite, payload ou carga de dados que vai junto com o evento)
+                this.$emit('aoTemporizadorFinalizado', this.tempo)
+                
+                // resetando o tempo do cronometro
+                this.tempo = 0
             }
         }
     });

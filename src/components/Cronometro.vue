@@ -19,6 +19,9 @@
         } ,
         computed: {
             tempoDecorridoFormatado () : string  {
+                // Mais sobre a biblioteca de Data (https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date)
+                // new Date().toLocaleTimeString() - retorna o horario localizado de acordo com o idioma do navegador
+                // new Date().toISOString() - retorna uma string respeitando a ISO (https://en.wikipedia.org/wiki/ISO_8601)
                 return new Date(this.tempo * 1000).toISOString().substring(19, 11);
             }
         },
