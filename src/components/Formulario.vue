@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box formulario">
         <div class="columns">
             <div class="column is-8" role="form" aria-label="Formulario para criacao de tarefas">
 
@@ -48,3 +48,10 @@
         }
     });
 </script>
+
+<style scope>
+ .formulario{
+     color: var(--texto-primario);
+     background-color: var(--bg-primario-form);
+ }
+</style>

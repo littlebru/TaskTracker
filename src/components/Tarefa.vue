@@ -1,26 +1,28 @@
 <template>
-    <div class="box has-text-weight-bold">
-        <div class="columns">
-            <div class="column is-7">
-                {{tarefa.descricao}}
+    <Box>
+        <div class="columns tarefa">
+            <div class="column is-7 descricao">
+                {{tarefa.descricao || 'Tarefa sem descrição'}}
             </div>
-            <div class="column">
-                <Cronometro :tempo="tarefa.duracaoEmSegundos"/>
+            <div class="column tarefa">
+                <Cronometro :tempo="tarefa.duracaoEmSegundos" class="tarefa"/>
             </div>
         </div>
-    </div>
+    </Box>
 </template>
 
 <script lang="ts">
     import{ defineComponent, PropType} from 'vue'
     import Cronometro from './Cronometro.vue'
     import ITarefa from '../Interfaces/ITarefa'
+    import Box from './Box.vue'
 
     /* eslint-disable */
     export default defineComponent({
         name: 'Tarefa',
         components:{
-            Cronometro
+            Cronometro,
+            Box
         },
         props:{
             tarefa: {
@@ -31,9 +33,13 @@
     });
 </script>
 
-<!--Escopado significa que ele só vai ser aplicado neste componente especifico ou para os filhos dele-->
-<style scoped>
-    .box{
-        background: #FFBD59;
-    }
+<style scope>
+ .tarefa{
+     color: var(--texto-primario);
+     font-weight: normal;
+ }
+ .descricao {
+     padding-left: 0.5rem;
+     text-transform: capitalize;
+ } 
 </style>
