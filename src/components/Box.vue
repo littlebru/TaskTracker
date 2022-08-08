@@ -1,5 +1,5 @@
 <template>
-    <div class="box has-text-weight-bold">
+    <div class="box has-text-weight-bold" :style="estilos">
     <!-- A tag slot coloca o conteudo de algum componente que importe o Box, para dentro da tag do componente Box-->
         <slot/>
     </div>
@@ -10,14 +10,13 @@
 
 /* eslint-disable */
     export default defineComponent({
-        name: 'Box'
+        name: 'Box',
+        data () {
+            return {
+                estilos: {
+                    backgroundColor: '#FFBD59'
+                }
+            }
+        }
     });
 </script>
-
-
-<!--Escopado significa que ele só vai ser aplicado neste componente especifico ou para os filhos dele-->
-<style scoped>
-    .box{
-        background: #FFBD59;
-    }
-</style>

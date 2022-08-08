@@ -28,6 +28,7 @@
     })
 </script>
 
+<!--Escopado significa que ele só vai ser aplicado neste componente especifico ou para os filhos dele-->
 <style scope>
  .cronometro strong{
      color: var(--texto-primario);
